@@ -25,7 +25,8 @@ export default defineNuxtConfig({
                 'java',
                 'xml',
                 'c#',
-                'kotlin'
+                'kotlin',
+                'sql',
             ]
         }
     }
