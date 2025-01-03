@@ -61,36 +61,36 @@ MainActivity
 
 Наприклад, розглянемо попереднє завдання, коли після натискання на кнопку в `ThirdActivity` запускається новий екземпляр `MainActivity`. Але ми хочемо не запускати новий екземпляр, а перейти до вже існуючого.
 
-~~~text
+```text
 MainActivity
 ThirdActivity
 SecondActivity
 MainActivity
-~~~
+```
 
 Щоб вийти з цієї ситуації, ми можемо використати флаг `Intent.FLAG_ACTIVITY_REORDER_TO_FRONT`:
 
-~~~java
+```java
 Intent intent = new Intent(this, MainActivity.class);
 intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 startActivity(intent);
-~~~
+```
 
 Флаг `Intent.FLAG_ACTIVITY_REORDER_TO_FRONT` переміщає `activity`, до якої здійснюється перехід, на вершину стека, якщо вона вже є в стеці. І в цьому випадку після переходу з `ThirdActivity` до `MainActivity` стек буде виглядати наступним чином:
 
-~~~text
+```text
 MainActivity
 ThirdActivity
 SecondActivity
-~~~
+```
 
 Якщо ж нам просто треба перейти з `ThirdActivity` до `MainActivity`, як якби ми повернулися назад за допомогою кнопки `Back`, ми можемо використовувати флаги `Intent.FLAG_ACTIVITY_CLEAR_TOP` та `Intent.FLAG_ACTIVITY_SINGLE_TOP`:
 
-~~~java
+```java
 Intent intent = new Intent(this, MainActivity.class);
 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
 startActivity(intent);
-~~~
+```
 
 Флаг `Intent.FLAG_ACTIVITY_CLEAR_TOP` очищає всі `activity`, крім тієї, яка запускається (якщо вона вже є в стеці). А флаг `Intent.FLAG_ACTIVITY_SINGLE_TOP` вказує, що якщо на вершині стека вже є `activity`, яку потрібно запустити, то вона НЕ буде запущена знову (вона може існувати в стеці тільки в єдиному екземплярі).
 
@@ -98,15 +98,15 @@ startActivity(intent);
 
 Ще один флаг — `Intent.FLAG_ACTIVITY_NO_HISTORY` дозволить не зберігати в стеці запущену `activity`. Наприклад, при запуску `SecondActivity` ми не хочемо її зберігати в стеці:
 
-~~~java
+```java
 Intent intent = new Intent(this, SecondActivity.class);
 intent.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
 startActivity(intent);
-~~~
+```
 
 У цьому випадку при переході по ланцюгу `MainActivity -> SecondActivity -> ThirdActivity` стек виглядатиме наступним чином:
 
-~~~text
+```text
 MainActivity
 ThirdActivity
-~~~
+```
