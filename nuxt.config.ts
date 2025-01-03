@@ -29,5 +29,8 @@ export default defineNuxtConfig({
                 'sql',
             ]
         }
-    }
+    },
+    css: [
+        '@/assets/css/global.css', // шлях до вашого файлу
+    ],
 })

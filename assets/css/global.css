@@ -1,0 +1,11 @@
+.title-collapsible-button {
+  & .content {
+    & svg {
+      flex: 0 0 auto; /* shorthand для flex-shrink: 0 */
+    }
+
+    & span {
+      text-align: start; /* універсальний варіант */
+    }
+  }
+}
